@@ -9,8 +9,8 @@
 %undefine	with_python3
 %endif
 # see m4/${libname}.m4 />= for required version of particular library
-%define		libbfio_ver	20160108
-%define		libcdata_ver	20181216
+%define		libbfio_ver	20201125
+%define		libcdata_ver	20230108
 %define		libcerror_ver	20120425
 %define		libcfile_ver	20160409
 %define		libclocale_ver	20120425
@@ -18,25 +18,25 @@
 %define		libcpath_ver	20180716
 %define		libcsplit_ver	20120701
 %define		libcthreads_ver	20160404
-%define		libfcache_ver	20181010
-%define		libfdata_ver	20181009
-%define		libfvalue_ver	20160131
-%define		libhmac_ver	20160802
-%define		libuna_ver	20181006
+%define		libfcache_ver	20191109
+%define		libfdata_ver	20201129
+%define		libfvalue_ver	20200711
+%define		libhmac_ver	20200104
+%define		libuna_ver	20210801
 Summary:	Library to access the storage media (SM) (split) RAW format
 Summary(pl.UTF-8):	Biblioteka służąca do dostępu do surowego (dzielonego) formatu nośnika danych (SM)
 Name:		libsmraw
-Version:	20181227
-Release:	5
+Version:	20230320
+Release:	1
 License:	LGPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/libyal/libsmraw/releases
 Source0:	https://github.com/libyal/libsmraw/releases/download/%{version}/%{name}-alpha-%{version}.tar.gz
-# Source0-md5:	510ccfd38ad5b13b173759224267fcfa
+# Source0-md5:	fc6460e8d099aafe19523ae3a41df02d
 URL:		https://github.com/libyal/libsmraw/
-BuildRequires:	autoconf >= 2.59
+BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1.6
-BuildRequires:	gettext-tools >= 0.18.1
+BuildRequires:	gettext-tools >= 0.21
 BuildRequires:	libbfio-devel >= %{libbfio_ver}
 BuildRequires:	libcdata-devel >= %{libcdata_ver}
 BuildRequires:	libcerror-devel >= %{libcerror_ver}
@@ -52,7 +52,7 @@ BuildRequires:	libfuse-devel >= 2.6
 BuildRequires:	libfvalue-devel >= %{libfvalue_ver}
 BuildRequires:	libhmac-devel >= %{libhmac_ver}
 BuildRequires:	libuna-devel >= %{libuna_ver}
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2
 BuildRequires:	openssl-devel >= 1.0
 BuildRequires:	pkgconfig
 %{?with_python2:BuildRequires:	python-devel >= 1:2.5}
