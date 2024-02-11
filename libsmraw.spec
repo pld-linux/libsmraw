@@ -1,11 +1,9 @@
 #
 # Conditional build:
-%bcond_without	python	# Python bindings (any)
-%bcond_without	python2	# CPython 2.x bindings
+%bcond_without	python	# Python (3) bindings
 %bcond_without	python3	# CPython 3.x bindings
 #
 %if %{without python}
-%undefine	with_python2
 %undefine	with_python3
 %endif
 # see m4/${libname}.m4 />= for required version of particular library
@@ -22,17 +20,17 @@
 %define		libfdata_ver	20201129
 %define		libfvalue_ver	20200711
 %define		libhmac_ver	20200104
-%define		libuna_ver	20210801
+%define		libuna_ver	20230702
 Summary:	Library to access the storage media (SM) (split) RAW format
 Summary(pl.UTF-8):	Biblioteka służąca do dostępu do surowego (dzielonego) formatu nośnika danych (SM)
 Name:		libsmraw
-Version:	20230320
+Version:	20231127
 Release:	1
 License:	LGPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/libyal/libsmraw/releases
 Source0:	https://github.com/libyal/libsmraw/releases/download/%{version}/%{name}-alpha-%{version}.tar.gz
-# Source0-md5:	fc6460e8d099aafe19523ae3a41df02d
+# Source0-md5:	c376802cfd8ef342be78c69252eac35d
 URL:		https://github.com/libyal/libsmraw/
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1.6
@@ -55,8 +53,7 @@ BuildRequires:	libuna-devel >= %{libuna_ver}
 BuildRequires:	libtool >= 2:2
 BuildRequires:	openssl-devel >= 1.0
 BuildRequires:	pkgconfig
-%{?with_python2:BuildRequires:	python-devel >= 1:2.5}
-%{?with_python3:BuildRequires:	python3-devel >= 1:3.2}
+%{?with_python3:BuildRequires:	python3-devel >= 1:3.7}
 Requires:	libbfio >= %{libbfio_ver}
 Requires:	libcdata >= %{libcdata_ver}
 Requires:	libcerror >= %{libcerror_ver}
@@ -131,18 +128,6 @@ Tools for libsmraw library.
 %description tools -l pl.UTF-8
 Narzędzia do biblioteki smraw.
 
-%package -n python-pysmraw
-Summary:	Python 2 bindings for libsmraw library
-Summary(pl.UTF-8):	Wiązania Pythona 2 do biblioteki libsmraw
-Group:		Libraries/Python
-Requires:	%{name} = %{version}-%{release}
-
-%description -n python-pysmraw
-Python 2 bindings for libsmraw library.
-
-%description -n python-pysmraw -l pl.UTF-8
-Wiązania Pythona 2 do biblioteki libsmraw.
-
 %package -n python3-pysmraw
 Summary:	Python 3 bindings for libsmraw library
 Summary(pl.UTF-8):	Wiązania Pythona 3 do biblioteki libsmraw
@@ -166,8 +151,8 @@ Wiązania Pythona 3 do biblioteki libsmraw.
 %{__autoheader}
 %{__automake}
 %configure \
-	%{?with_python2:--enable-python2} \
-	%{?with_python3:--enable-python3}
+	PYTHON_VERSION=3 \
+	%{?with_python3:--enable-python}
 %{__make}
 
 %install
@@ -179,9 +164,6 @@ rm -rf $RPM_BUILD_ROOT
 # obsoleted by pkg-config
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/libsmraw.la
 
-%if %{with python2}
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/pysmraw.{la,a}
-%endif
 %if %{with python3}
 %{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/pysmraw.{la,a}
 %endif
@@ -215,12 +197,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/smrawmount
 %attr(755,root,root) %{_bindir}/smrawverify
 %{_mandir}/man1/smrawmount.1*
-
-%if %{with python2}
-%files -n python-pysmraw
-%defattr(644,root,root,755)
-%attr(755,root,root) %{py_sitedir}/pysmraw.so
-%endif
 
 %if %{with python3}
 %files -n python3-pysmraw
