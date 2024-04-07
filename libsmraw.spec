@@ -24,13 +24,13 @@
 Summary:	Library to access the storage media (SM) (split) RAW format
 Summary(pl.UTF-8):	Biblioteka służąca do dostępu do surowego (dzielonego) formatu nośnika danych (SM)
 Name:		libsmraw
-Version:	20231127
+Version:	20240310
 Release:	1
 License:	LGPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/libyal/libsmraw/releases
 Source0:	https://github.com/libyal/libsmraw/releases/download/%{version}/%{name}-alpha-%{version}.tar.gz
-# Source0-md5:	c376802cfd8ef342be78c69252eac35d
+# Source0-md5:	2d05b56b65e5d77a15fea3b2ae6001c5
 URL:		https://github.com/libyal/libsmraw/
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1.6
