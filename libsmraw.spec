@@ -24,13 +24,13 @@
 Summary:	Library to access the storage media (SM) (split) RAW format
 Summary(pl.UTF-8):	Biblioteka służąca do dostępu do surowego (dzielonego) formatu nośnika danych (SM)
 Name:		libsmraw
-Version:	20240310
+Version:	20240506
 Release:	1
 License:	LGPL v3+
 Group:		Libraries
 #Source0Download: https://github.com/libyal/libsmraw/releases
 Source0:	https://github.com/libyal/libsmraw/releases/download/%{version}/%{name}-alpha-%{version}.tar.gz
-# Source0-md5:	2d05b56b65e5d77a15fea3b2ae6001c5
+# Source0-md5:	e49d54d43a5c45cbca218df5849589ca
 URL:		https://github.com/libyal/libsmraw/
 BuildRequires:	autoconf >= 2.71
 BuildRequires:	automake >= 1.6
@@ -46,7 +46,8 @@ BuildRequires:	libcsplit-devel >= %{libcsplit_ver}
 BuildRequires:	libcthreads-devel >= %{libcthreads_ver}
 BuildRequires:	libfcache-devel >= %{libfcache_ver}
 BuildRequires:	libfdata-devel >= %{libfdata_ver}
-BuildRequires:	libfuse-devel >= 2.6
+# or libfuse >= 2.6
+BuildRequires:	libfuse3-devel >= 3.0
 BuildRequires:	libfvalue-devel >= %{libfvalue_ver}
 BuildRequires:	libhmac-devel >= %{libhmac_ver}
 BuildRequires:	libuna-devel >= %{libuna_ver}
@@ -119,7 +120,7 @@ Summary:	Tools for libsmraw library
 Summary(pl.UTF-8):	Narzędzia do biblioteki smraw
 Group:		Applications/System
 Requires:	%{name} = %{version}-%{release}
-Requires:	libfuse >= 2.6
+Requires:	libfuse3 >= 3.0
 Requires:	libhmac >= %{libhmac_ver}
 
 %description tools
